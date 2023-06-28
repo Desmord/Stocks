@@ -1,6 +1,6 @@
 import { MdLogin } from 'react-icons/md';
 
-import styles from './header.module.scss';
+import styles from './Header.module.scss';
 
 const Header = () => {
 
