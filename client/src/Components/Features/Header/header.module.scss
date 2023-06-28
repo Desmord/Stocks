@@ -1,0 +1,29 @@
+@import "../../../Styles/settings.scss";
+
+$element-width: 200px;
+
+.container {
+    position: relative;
+    top: 0px;
+    left: calc(100% - $element-width);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: $element-width;
+    margin-top: 10px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+    color: $color-white;
+    font-size: calc($base-size * 2);
+
+    svg {
+        margin: 5px 20px;
+        opacity: 0.5;
+        transition: $transition;
+
+        &:hover{
+            cursor: pointer;
+            opacity: 1;
+        }
+    }
+}
