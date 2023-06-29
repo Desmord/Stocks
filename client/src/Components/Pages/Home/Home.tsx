@@ -1,11 +1,62 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import {
+    getStockValues,
+    getWigValues,
+} from '../../../UtilitieFunctions';
+import { STOCK, INDEX, INDEXES, WIG20_SHORCUTS } from '../../../Utilities';
 
 import styles from './Home.module.scss';
-
+// przeniesc funckie bez use jakis nazewnatrz
+// przechwicenie danych o kodzie 400 np pustych
+//  animacja na loadProgres 100
 const Home = () => {
     const [loadProgress, setLoadProgress] = useState(0)
+    const [indexes, setIndexes] = useState<INDEX[]>([]);
+    const [stocks, setStocks] = useState<STOCK[]>([])
 
-    
+    const downloadIndex = (indexName: string) => {
+        return new Promise(async (resolve, reject) => {
+            const value = await getWigValues(indexName)
+            setLoadProgress(prev => prev + 4)
+            resolve(value)
+        })
+    }
+
+    const downloadStock = (stockName: string) => {
+        return new Promise(async (resolve, reject) => {
+            const value = await getStockValues(stockName)
+            setLoadProgress(prev => prev + 4)
+            resolve(value)
+        })
+    }
+
+    const downloadIndexes = async () => {
+
+        let promisesArray: any[] = [];
+        INDEXES.forEach(async (indexName: string) => {
+            promisesArray.push(downloadIndex(indexName))
+        })
+
+        const indexesValues = await Promise.all(promisesArray)
+        setIndexes(indexesValues)
+    }
+
+    const downloadStocks = async () => {
+
+        let promisesArray: any[] = [];
+        WIG20_SHORCUTS.forEach((company: { name: string; shortcut: string }) => {
+            promisesArray.push(downloadStock(company.shortcut))
+        })
+
+        const stocksValues = await Promise.all(promisesArray)
+        setStocks(stocksValues)
+
+    }
+
+    useEffect(() => {
+        downloadIndexes()
+        downloadStocks()
+    }, [])
 
     return (
         <div className={styles.container}>

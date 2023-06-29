@@ -17,7 +17,7 @@ const {
  * Returns object with wig values depending on wigName
  * @param {*} req 
  * @param {*} res 
- * @return { mainValue, percentageChange, valueChange } object
+ * @return {wigName, mainValue, percentageChange, valueChange } object
  */
 const getWig20Values = async (req, res) => {
     const wigName = req.params.wigName;
@@ -61,7 +61,7 @@ const getWig20Values = async (req, res) => {
             valueChange = minorValuesRegexResult[1].match(VALUE_REGEX_PATTERN)
         }
 
-        res.status(200).json({ mainValue, percentageChange, valueChange })
+        res.status(200).json({ wigName, mainValue, percentageChange, valueChange })
 
     } catch (error) {
         console.log(error)
