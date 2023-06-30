@@ -26,17 +26,17 @@ const Wigs = ({ indexes }: { indexes: INDEX[] }) => {
                         <span>{stockIndex.mainValue}</span>
                         <span
                             className={`
-                                ${isLoss(stockIndex.valueChange) ? styles.loss : ``}
-                                ${isProfit(stockIndex.valueChange) ? styles.profit : ``}
-                            `}>
-                            {stockIndex.valueChange}
-                        </span>
-                        <span
-                            className={`
                                 ${isLoss(stockIndex.percentageChange) ? styles.loss : ``}
                                 ${isProfit(stockIndex.percentageChange) ? styles.profit : ``}
                             `}>
                             {stockIndex.percentageChange}%
+                        </span>
+                        <span
+                            className={`
+                                ${isLoss(stockIndex.valueChange) ? styles.loss : ``}
+                                ${isProfit(stockIndex.valueChange) ? styles.profit : ``}
+                            `}>
+                            {stockIndex.valueChange}
                         </span>
                     </div>
                 )
