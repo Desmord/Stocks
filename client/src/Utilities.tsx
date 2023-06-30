@@ -26,21 +26,17 @@ export const WIG20_SHORCUTS = [
 ]
 
 
-export type STOCK = {
+export interface STOCK {
     companyShortcut: string,
     mainValue: string,
     percentageChange: string,
     valueChange: string,
-} | {
-    error: string
+    error?: any,
 }
-
-export type INDEX = {
+export interface INDEX {
     wigName: string,
     mainValue: string,
     percentageChange: string,
     valueChange: string,
-} | {
-    error: string,
-}
-
+    error?:any,
+} 

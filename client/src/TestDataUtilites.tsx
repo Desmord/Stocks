@@ -204,7 +204,7 @@ export const TEST_STOCK_DATA: STOCK[] =
 
 export const TEST_INDEXES_DATA: INDEX[] = [
     {
-        wigName: "wig",
+        wigName: "WIG",
         mainValue: "67142,59",
         percentageChange:
             "-0,15"
@@ -214,7 +214,7 @@ export const TEST_INDEXES_DATA: INDEX[] = [
 
     },
     {
-        wigName: "wig20",
+        wigName: "WIG 20",
         mainValue: "2056,33",
         percentageChange:
             "-0,28"
@@ -224,7 +224,7 @@ export const TEST_INDEXES_DATA: INDEX[] = [
 
     },
     {
-        wigName: "wig30",
+        wigName: "WIG 30",
         mainValue: "2529,68",
         percentageChange:
             "-0,18"
@@ -234,17 +234,16 @@ export const TEST_INDEXES_DATA: INDEX[] = [
 
     },
     {
-        wigName: "wig40",
+        wigName: "WIG 40",
         mainValue: "4842,03",
         percentageChange:
             "-0,12"
         ,
         valueChange:
-            "-6,0100"
-
+            "-6,0100",
     },
     {
-        wigName: "wig80",
+        wigName: "WIG 80",
         mainValue: "21649,34",
         percentageChange:
             "0,57"

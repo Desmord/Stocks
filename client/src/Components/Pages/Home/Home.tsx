@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { getStockValues, getWigValues, } from '../../../UtilitieFunctions';
 import { STOCK, INDEX, INDEXES, WIG20_SHORCUTS } from '../../../Utilities';
+
+import Wigs from './Wigs/Wigs';
 // trial ------------------------------------------------------------------------
 // ------------------------------------------------------------------------------
 import { TEST_STOCK_DATA, TEST_INDEXES_DATA } from '../../../TestDataUtilites';
@@ -140,7 +142,7 @@ const Home = () => {
                 </div>
             </div>
             <div ref={wigsContainer} className={styles.mainWigs}>
-                {/* tutaj compioenet z danymi zeby nie robic forwardref */}
+                <Wigs indexes={indexes} />
             </div>
             <div ref={stocksContainer} className={styles.wig20Stocks}>
                 {/* tutaj compioenet z danymi zeby nie robic forwardref */}
