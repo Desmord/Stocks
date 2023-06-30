@@ -3,6 +3,7 @@ import { getStockValues, getWigValues, } from '../../../UtilitieFunctions';
 import { STOCK, INDEX, INDEXES, WIG20_SHORCUTS } from '../../../Utilities';
 
 import Wigs from './Wigs/Wigs';
+import Stocks from './Stocks/Stocks';
 // trial ------------------------------------------------------------------------
 // ------------------------------------------------------------------------------
 import { TEST_STOCK_DATA, TEST_INDEXES_DATA } from '../../../TestDataUtilites';
@@ -10,9 +11,6 @@ import { TEST_STOCK_DATA, TEST_INDEXES_DATA } from '../../../TestDataUtilites';
 // ------------------------------------------------------------------------------
 import styles from './Home.module.scss';
 
-
-// zmapowac dane percentageChange/valueChange na wartosc a nie tablice
-// sprawidzc mapwanie po errorez
 const Home = () => {
     const [loadProgress, setLoadProgress] = useState(0);
     const [indexesLoaded, setIndexesLoaded] = useState(false);
@@ -30,6 +28,7 @@ const Home = () => {
             setLoadProgress(prev => prev + 4)
             resolve(value)
         })
+        
     }
 
     const createIndexesPromiseArray = () => {
@@ -145,7 +144,7 @@ const Home = () => {
                 <Wigs indexes={indexes} />
             </div>
             <div ref={stocksContainer} className={styles.wig20Stocks}>
-                {/* tutaj compioenet z danymi zeby nie robic forwardref */}
+                <Stocks stocks={stocks}/>
             </div>
         </div>
     )

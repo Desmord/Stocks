@@ -1,8 +1,8 @@
-import { INDEX } from '../../../../Utilities';
+import { STOCK} from '../../../../Utilities';
 
-import styles from './Wigs.module.scss';
+import styles from './Stocks.module.scss';
 
-const Wigs = ({ indexes }: { indexes: INDEX[] }) => {
+const Stocks = ({ stocks }: { stocks: STOCK[] }) => {
 
     const isLoss = (value: string): boolean => !!value.match(/-/gim)
 
@@ -10,8 +10,8 @@ const Wigs = ({ indexes }: { indexes: INDEX[] }) => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.indices}>STOCK INDICES</div>
-            {indexes.map((stockIndex: INDEX, arrayIndex: number) => {
+            <div className={styles.stocks}>WIG 20 STOCKS</div>
+            {stocks.map((stockIndex: STOCK, arrayIndex: number) => {
 
                 if (stockIndex.error) {
                     return (
@@ -23,7 +23,7 @@ const Wigs = ({ indexes }: { indexes: INDEX[] }) => {
 
                 return (
                     <div className={styles.index} key={arrayIndex}>
-                        <span>{stockIndex.wigName}</span>
+                        <span>{stockIndex.companyShortcut}</span>
                         <span>{stockIndex.mainValue}</span>
                         <span
                             className={`
@@ -46,4 +46,4 @@ const Wigs = ({ indexes }: { indexes: INDEX[] }) => {
     )
 }
 
-export default Wigs;
+export default Stocks;
