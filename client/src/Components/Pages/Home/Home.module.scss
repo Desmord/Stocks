@@ -87,6 +87,7 @@
                 right: 0px;
             }
         }
+
     }
 
     .mainWigs {
@@ -102,7 +103,42 @@
         display: none;
         opacity: 0;
     }
+
+    .hidden {
+        animation: hideLoader;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+    }
+
+    .shown {
+        animation: showContainer;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+    }
 }
+
+@keyframes hideLoader {
+    0% {
+        opacity: 100;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes showContainer {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 100;
+    }
+}
+
 
 @keyframes loadingOne {
     0% {

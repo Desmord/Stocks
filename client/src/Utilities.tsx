@@ -25,16 +25,22 @@ export const WIG20_SHORCUTS = [
     { name: `mBank`, shortcut: `MBANK` },
 ]
 
-export interface STOCK {
+
+export type STOCK = {
     companyShortcut: string,
     mainValue: string,
     percentageChange: string,
     valueChange: string,
+} | {
+    error: string
 }
 
-export interface INDEX {
+export type INDEX = {
     wigName: string,
     mainValue: string,
     percentageChange: string,
     valueChange: string,
+} | {
+    error: string,
 }
+

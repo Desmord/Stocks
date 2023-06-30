@@ -1,20 +1,22 @@
-import { useState, useEffect } from 'react';
-import {
-    getStockValues,
-    getWigValues,
-} from '../../../UtilitieFunctions';
+import { useState, useEffect, useRef } from 'react';
+import { getStockValues, getWigValues, } from '../../../UtilitieFunctions';
 import { STOCK, INDEX, INDEXES, WIG20_SHORCUTS } from '../../../Utilities';
 
 import styles from './Home.module.scss';
-// przeniesc funckie bez use jakis nazewnatrz
-// przechwicenie danych o kodzie 400 np pustych
-//  animacja na loadProgres 100
+
+
 const Home = () => {
-    const [loadProgress, setLoadProgress] = useState(0)
+    const [loadProgress, setLoadProgress] = useState(0);
+    const [indexesLoaded, setIndexesLoaded] = useState(false);
+    const [stocksLoaded, setStocksLoaded] = useState(false);
     const [indexes, setIndexes] = useState<INDEX[]>([]);
     const [stocks, setStocks] = useState<STOCK[]>([])
 
-    const downloadIndex = (indexName: string) => {
+    const loader = useRef<HTMLDivElement>(null);
+    const wigsContainer = useRef<HTMLDivElement>(null);
+    const stocksContainer = useRef<HTMLDivElement>(null);
+
+    const downloadIndexPromise = (indexName: string) => {
         return new Promise(async (resolve, reject) => {
             const value = await getWigValues(indexName)
             setLoadProgress(prev => prev + 4)
@@ -22,7 +24,7 @@ const Home = () => {
         })
     }
 
-    const downloadStock = (stockName: string) => {
+    const downloadStockPromise = (stockName: string) => {
         return new Promise(async (resolve, reject) => {
             const value = await getStockValues(stockName)
             setLoadProgress(prev => prev + 4)
@@ -34,22 +36,38 @@ const Home = () => {
 
         let promisesArray: any[] = [];
         INDEXES.forEach(async (indexName: string) => {
-            promisesArray.push(downloadIndex(indexName))
+            promisesArray.push(downloadIndexPromise(indexName))
         })
 
         const indexesValues = await Promise.all(promisesArray)
+
         setIndexes(indexesValues)
+        setIndexesLoaded(true)
     }
 
     const downloadStocks = async () => {
 
         let promisesArray: any[] = [];
         WIG20_SHORCUTS.forEach((company: { name: string; shortcut: string }) => {
-            promisesArray.push(downloadStock(company.shortcut))
+            promisesArray.push(downloadStockPromise(company.shortcut))
         })
 
         const stocksValues = await Promise.all(promisesArray)
+
         setStocks(stocksValues)
+        setStocksLoaded(true)
+
+    }
+
+    const showIndexes = () => {
+        // display elements (opacity 0)
+        wigsContainer.current?.setAttribute(`style`, `display: block;`);
+        stocksContainer.current?.setAttribute(`style`, `display: block;`);
+        // wait moment and start displaying
+        setTimeout(() => {
+            wigsContainer.current?.classList.add(styles.shown);
+            stocksContainer.current?.classList.add(styles.shown);
+        }, 100);
 
     }
 
@@ -60,7 +78,10 @@ const Home = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.title}>
+            <div
+                ref={loader}
+                onAnimationEnd={() => showIndexes()}
+                className={`${styles.title} ${indexesLoaded && stocksLoaded ? styles.hidden : ``}`}>
                 <div className={styles.loaderList}>
                     <div className={`${styles.loaderOne} ${styles.loaderTypeOne}`}></div>
                     <div className={`${styles.loaderTwo} ${styles.loaderTypeTwo}`}></div>
@@ -72,13 +93,14 @@ const Home = () => {
                     <span>%</span>
                 </div>
             </div>
-            <div className={styles.mainWigs}>Main Wigs</div>
-            <div className={styles.wig20Stocks}>vig20 stocks</div>
+            <div ref={wigsContainer} className={styles.mainWigs}>
+                {/* tutaj compioenet z danymi zeby nie robic forwardref */}
+            </div>
+            <div ref={stocksContainer} className={styles.wig20Stocks}>
+                {/* tutaj compioenet z danymi zeby nie robic forwardref */}
+            </div>
         </div>
     )
 }
 
 export default Home;
-
-
-// on animation end i wtedy wyswietlamy
