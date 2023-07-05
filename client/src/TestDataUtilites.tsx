@@ -237,10 +237,10 @@ export const TEST_INDEXES_DATA: INDEX[] = [
         wigName: "WIG 40",
         mainValue: "4842,03",
         percentageChange:
-            "-0,12"
+            "00,0"
         ,
         valueChange:
-            "-6,0100",
+            "0,0000",
     },
     {
         wigName: "WIG 80",
