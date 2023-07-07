@@ -38,5 +38,10 @@ export interface INDEX {
     mainValue: string,
     percentageChange: string,
     valueChange: string,
-    error?:any,
-} 
+    error?: any,
+}
+
+export const URL_ADRESSES = {
+    HOME: `/`,
+    LOGIN: `/login`,
+}
