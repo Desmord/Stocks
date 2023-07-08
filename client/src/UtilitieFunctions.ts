@@ -1,6 +1,7 @@
 import {
     GET_STOCK_URL,
     GET_WIG_URL,
+    GET_LOGIN_URL,
     STOCK,
     INDEX
 } from './Utilities';
@@ -39,4 +40,21 @@ export const deleteDuplicatesFromObjectArray = <T>(arr: T[]): T[] => {
     });
 
     return uniqueArray
+}
+
+export const logIn = async (login: string, password: string) => {
+
+    const response = await fetch(GET_LOGIN_URL, {
+        method: `POST`,
+        mode: `cors`,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            login,
+            password,
+        })
+    });
+
+    return await response.json()
 }

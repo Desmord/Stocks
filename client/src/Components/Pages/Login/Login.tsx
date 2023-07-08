@@ -1,4 +1,7 @@
 import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { URL_ADRESSES } from '../../../Utilities';
+import { logIn } from '../../../UtilitieFunctions';
 
 import styles from './Login.module.scss';
 
@@ -10,6 +13,8 @@ const Login = () => {
     const loginInput = useRef(null);
     const passwordInput = useRef(null);
 
+    const navigate = useNavigate();
+
     const displayError = (errorText: string) => {
         const errorDisplayTime = 4000;
 
@@ -19,7 +24,7 @@ const Login = () => {
         }, errorDisplayTime)
     }
 
-    const handleClick = () => {
+    const handleClick = async () => {
         const isLoginEmpty = login ? true : false;
         const isPasswordEmpty = password ? true : false;
 
@@ -31,9 +36,21 @@ const Login = () => {
             return 0;
         }
 
+        
+        // const isLogged = await logIn(login, password);
+        // trial ------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------
+        const isLogged = true;
+        // end-trial --------------------------------------------------------------------
+        // ------------------------------------------------------------------------------
 
-        // tutaj logujemy
 
+        if (isLogged) {
+            sessionStorage.setItem(`isLogged`, `true`)
+            navigate(URL_ADRESSES.USER_PANEL, { replace: true })
+        } else {
+            displayError(`Wrong login or password`)
+        }
 
     }
 
@@ -41,6 +58,7 @@ const Login = () => {
         <div className={styles.container}>
             <div className={`${errorText ? styles.errorDisplayed : ``} ${styles.error}`}>{errorText}</div>
             <input
+                onKeyDown={(e) => { if (e.key === `Enter`) { handleClick() } }}
                 value={login}
                 onChange={(e) => setLogin(e.target.value)}
                 ref={loginInput}
@@ -48,13 +66,18 @@ const Login = () => {
                 placeholder='Login'
                 maxLength={50} />
             <input
+                onKeyDown={(e) => { if (e.key === `Enter`) { handleClick() } }}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 ref={passwordInput}
                 type="password"
                 placeholder='Password'
                 maxLength={50} />
-            <div onClick={() => handleClick()} className={styles.login}>Login</div>
+            <div
+                onClick={() => handleClick()}
+                className={styles.login}>
+                Login
+            </div>
         </div>
     )
 }

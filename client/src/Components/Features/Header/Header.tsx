@@ -1,15 +1,22 @@
 import { useNavigate } from 'react-router-dom';
-import { MdLogin } from 'react-icons/md';
+import { RiLogoutBoxLine } from 'react-icons/ri';
 import { URL_ADRESSES } from '../../../Utilities';
 
 import styles from './Header.module.scss';
-// dodac adresy do utilites
+
 const Header = () => {
 
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(URL_ADRESSES.LOGIN, { replace: true })
+
+        if (sessionStorage.getItem(`isLogged`)) {
+            sessionStorage.removeItem(`isLogged`)
+            navigate(URL_ADRESSES.HOME, { replace: true })
+        } else {
+            navigate(URL_ADRESSES.LOGIN, { replace: true })
+        }
+
     }
 
     // try catch
@@ -69,7 +76,7 @@ const Header = () => {
 
     return (
         <div onClick={() => handleClick()} className={styles.container}>
-            <MdLogin />
+            {sessionStorage.getItem(`isLogged`) ? <RiLogoutBoxLine /> : <div className={styles.signIn}>Sign in</div>}
         </div>
     )
 }
