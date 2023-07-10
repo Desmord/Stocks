@@ -1,4 +1,5 @@
-import { INDEX, STOCK } from "./Utilities"
+import { INDEX, STOCK } from "./UtilitiesData"
+import { TransactionType } from "./Transaction"
 
 export const TEST_STOCK_DATA: STOCK[] =
     [
@@ -254,7 +255,7 @@ export const TEST_INDEXES_DATA: INDEX[] = [
     }
 ]
 
-export const TEST_TRANSACTIONS = [
+export const TEST_TRANSACTIONS:   TransactionType[] = [
     {
         id: "1",
         shortcut: "PLAYWAY",

@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { URL_ADRESSES } from '../../../Utilities';
-import { logIn } from '../../../UtilitieFunctions';
+import { URL_ADRESSES } from '../../../Utilities/UtilitiesData';
+import { logIn } from '../../../Utilities/UtilitieFunctions';
 
 import styles from './Login.module.scss';
 

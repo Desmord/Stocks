@@ -1,11 +1,50 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { URL_ADRESSES } from '../../../Utilities';
+import { URL_ADRESSES } from '../../../Utilities/UtilitiesData';
+import { getUserData } from '../../../Utilities/UtilitieFunctions';
+import { setUser } from '../../../Redux/UserDataSlice';
+// trial ------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
+import { TEST_TRANSACTIONS } from '../../../Utilities/TestDataUtilites';
+// end-trial --------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 
 import styles from './UserPanel.module.scss'
 
 const UserPanel = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const getData = async () => {
+        // const data = await getUserData();
+        // dispatch(setUser({
+        //     _id: data._id ? data._id : ``,
+        //     login: data.login ? data.login : ``,
+        //     password: data.password ? data.password : ``,
+        //     tips: data.tips ? data.tips : [],
+        //     transactions: data.transactions ? data.transactions : [],
+        // }))
+
+
+        // trial ------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------
+        dispatch(setUser({
+            _id: `1`,
+            login: `mikolaj`,
+            password: `haslo`,
+            tips: [`tip 1`],
+            transactions: TEST_TRANSACTIONS,
+        }))
+        // end-trial --------------------------------------------------------------------
+        // ------------------------------------------------------------------------------
+
+
+    }
+
+    useEffect(() => {
+        getData()
+    }, []);
 
     useEffect(() => {
         if (!sessionStorage.getItem(`isLogged`)) navigate(URL_ADRESSES.HOME, { replace: true })

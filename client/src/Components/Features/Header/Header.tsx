@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { RiLogoutBoxLine } from 'react-icons/ri';
-import { URL_ADRESSES } from '../../../Utilities';
+import { URL_ADRESSES } from '../../../Utilities/UtilitiesData';
 
 import styles from './Header.module.scss';
 

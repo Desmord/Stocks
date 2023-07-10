@@ -1,4 +1,4 @@
-import { STOCK} from '../../../../Utilities';
+import { STOCK} from '../../../../Utilities/UtilitiesData';
 
 import styles from './Stocks.module.scss';
 

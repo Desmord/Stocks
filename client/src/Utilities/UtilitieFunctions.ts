@@ -2,9 +2,10 @@ import {
     GET_STOCK_URL,
     GET_WIG_URL,
     GET_LOGIN_URL,
+    GET_USER_URL,
     STOCK,
     INDEX
-} from './Utilities';
+} from './UtilitiesData';
 
 /**
  * 
@@ -57,4 +58,13 @@ export const logIn = async (login: string, password: string) => {
     });
 
     return await response.json()
+}
+
+export const getUserData = async () => {
+
+    const response = await fetch(`${GET_USER_URL}`)
+    const jsonData = await response.json();
+
+    return jsonData;
+
 }

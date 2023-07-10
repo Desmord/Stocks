@@ -1,4 +1,4 @@
-import { INDEX } from '../../../../Utilities';
+import { INDEX } from '../../../../Utilities/UtilitiesData';
 
 import styles from './Wigs.module.scss';
 

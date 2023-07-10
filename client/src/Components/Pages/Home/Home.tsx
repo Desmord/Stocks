@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { getStockValues, getWigValues, } from '../../../UtilitieFunctions';
-import { STOCK, INDEX, INDEXES, WIG20_SHORCUTS } from '../../../Utilities';
+import { getStockValues, getWigValues, } from '../../../Utilities/UtilitieFunctions';
+import { STOCK, INDEX, INDEXES, WIG20_SHORCUTS } from '../../../Utilities/UtilitiesData';
 
 import Wigs from './Wigs/Wigs';
 import Stocks from './Stocks/Stocks';
 // trial ------------------------------------------------------------------------
 // ------------------------------------------------------------------------------
-import { TEST_STOCK_DATA, TEST_INDEXES_DATA } from '../../../TestDataUtilites';
+import { TEST_STOCK_DATA, TEST_INDEXES_DATA } from '../../../Utilities/TestDataUtilites';
 // end-trial --------------------------------------------------------------------
 // ------------------------------------------------------------------------------
 import styles from './Home.module.scss';
