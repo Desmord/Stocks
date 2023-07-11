@@ -1,0 +1,34 @@
+@import '../../../../Styles/settings.scss';
+
+.container {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 200px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: hsl(220, 8%, 20%);
+
+    .button {
+        width: 100%;
+        padding: 13px 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        color: $color-dark-grey;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        transition: $transition;
+
+        &:hover {
+            cursor: pointer;
+            background-color: hsl(220, 8%, 23%);
+            transform: scale(1.1);
+        }
+    }
+
+    .buttonActive {
+        background-color: hsl(220, 8%, 23%);
+        color: $color-light-grey;
+    }
+}
