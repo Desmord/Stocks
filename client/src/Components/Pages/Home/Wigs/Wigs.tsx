@@ -1,8 +1,8 @@
-import { INDEX } from '../../../../Utilities/UtilitiesData';
+import { IndexInterface } from '../../../../Utilities/TypesAndInterfaces';
 
 import styles from './Wigs.module.scss';
 
-const Wigs = ({ indexes }: { indexes: INDEX[] }) => {
+const Wigs = ({ indexes }: { indexes: IndexInterface[] }) => {
 
     const isLoss = (value: string): boolean => !!value.match(/-/gim)
 
@@ -11,7 +11,7 @@ const Wigs = ({ indexes }: { indexes: INDEX[] }) => {
     return (
         <div className={styles.container}>
             <div className={styles.indices}>STOCK INDICES</div>
-            {indexes.map((stockIndex: INDEX, arrayIndex: number) => {
+            {indexes.map((stockIndex: IndexInterface, arrayIndex: number) => {
 
                 if (stockIndex.error) {
                     return (

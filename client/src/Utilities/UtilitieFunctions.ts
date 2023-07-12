@@ -3,17 +3,22 @@ import {
     GET_WIG_URL,
     GET_LOGIN_URL,
     GET_USER_URL,
-    STOCK,
-    INDEX
 } from './UtilitiesData';
+import {
+    StockInterface,
+    IndexInterface,
+    CurrentOwnedStocksType,
+    TransactionType
+} from './TypesAndInterfaces';
+
 
 /**
  * 
  * @param stockName string
  * @returns { companyShortcut: string, mainValue: string, percentageChange: string, valueChange: string } object
  */
-export const getStockValues = async (stockName: string): Promise<STOCK> => {
-    const response = await fetch(`${GET_STOCK_URL}${stockName}`)
+export const getStockValues = async (stockShortcut: string): Promise<StockInterface> => {
+    const response = await fetch(`${GET_STOCK_URL}${stockShortcut}`)
     const jsonData = await response.json();
 
     return jsonData;
@@ -24,7 +29,7 @@ export const getStockValues = async (stockName: string): Promise<STOCK> => {
  * @param wigName string
  * @returns  { mainValue: string, percentageChange: string , valueChange: string } object
  */
-export const getWigValues = async (wigName: string): Promise<INDEX> => {
+export const getWigValues = async (wigName: string): Promise<IndexInterface> => {
     const response = await fetch(`${GET_WIG_URL}${wigName}`)
     const jsonData = await response.json();
 
@@ -67,4 +72,78 @@ export const getUserData = async () => {
 
     return jsonData;
 
+}
+
+const addToQuantity = (
+    currentTransaction: TransactionType[],
+    transactionIndex: number,
+    quantity: number
+): TransactionType[] => {
+    currentTransaction[transactionIndex].quantity =
+        currentTransaction[transactionIndex].quantity + quantity
+
+    return currentTransaction
+}
+
+const substractQuantity = (
+    currentTransaction: TransactionType[],
+    transactionIndex: number,
+    quantity: number,
+    shortcut: string,
+): TransactionType[] => {
+    if (currentTransaction[transactionIndex].quantity > quantity) {
+        currentTransaction[transactionIndex].quantity =
+            currentTransaction[transactionIndex].quantity - quantity
+    } else {
+        currentTransaction = currentTransaction.filter((transaction: TransactionType) => {
+            return transaction.shortcut !== shortcut ? true : false
+        })
+    }
+
+    return currentTransaction
+}
+
+export const getCurrentStocksBasedOnTransactions = (transactions: TransactionType[]): any[] => {
+
+    const allTransactions = JSON.parse(JSON.stringify(transactions));
+    let currentTransaction: TransactionType[] = [];
+
+    allTransactions.forEach((element: TransactionType) => {
+        const transactionIndex = currentTransaction.map(e => e.shortcut).indexOf(element.shortcut)
+        const isAqusition = element.acqusition ? true : false;
+        const isStockAlreadyExits = currentTransaction.some((currentTransaction: TransactionType) =>
+            currentTransaction.shortcut === element.shortcut ? true : false)
+
+
+        if (isStockAlreadyExits) {
+
+            if (isAqusition) {
+                currentTransaction = addToQuantity(currentTransaction, transactionIndex, element.quantity)
+            } else {
+                currentTransaction = substractQuantity(
+                    currentTransaction,
+                    transactionIndex,
+                    element.quantity,
+                    element.shortcut
+                )
+            }
+
+        } else {
+            currentTransaction.push(element)
+        }
+
+
+
+    });
+
+    return currentTransaction.map((transactions: TransactionType): CurrentOwnedStocksType => {
+        return {
+            shortcut: transactions.shortcut,
+            quantity: transactions.quantity,
+            name: transactions.name,
+            notes: transactions.notes,
+            group: transactions.group,
+        }
+    })
+    
 }

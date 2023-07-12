@@ -1,7 +1,7 @@
-import { INDEX, STOCK } from "./UtilitiesData"
-import { TransactionType } from "./Transaction"
+// import { INDEX, STOCK } from "./UtilitiesData"
+import { IndexInterface,StockInterface,TransactionType } from "./TypesAndInterfaces"
 
-export const TEST_STOCK_DATA: STOCK[] =
+export const TEST_STOCK_DATA: StockInterface[] =
     [
         {
             companyShortcut: "ALIOR",
@@ -203,7 +203,7 @@ export const TEST_STOCK_DATA: STOCK[] =
         }
     ]
 
-export const TEST_INDEXES_DATA: INDEX[] = [
+export const TEST_INDEXES_DATA: IndexInterface[] = [
     {
         wigName: "WIG",
         mainValue: "67142,59",

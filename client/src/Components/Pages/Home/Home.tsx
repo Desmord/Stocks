@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { getStockValues, getWigValues, } from '../../../Utilities/UtilitieFunctions';
-import { STOCK, INDEX, INDEXES, WIG20_SHORCUTS } from '../../../Utilities/UtilitiesData';
+import { INDEXES, WIG20_SHORCUTS } from '../../../Utilities/UtilitiesData';
+import { StockInterface, IndexInterface } from '../../../Utilities/TypesAndInterfaces';
 
 import Wigs from './Wigs/Wigs';
 import Stocks from './Stocks/Stocks';
@@ -15,8 +16,8 @@ const Home = () => {
     const [loadProgress, setLoadProgress] = useState(0);
     const [indexesLoaded, setIndexesLoaded] = useState(false);
     const [stocksLoaded, setStocksLoaded] = useState(false);
-    const [indexes, setIndexes] = useState<INDEX[]>([]);
-    const [stocks, setStocks] = useState<STOCK[]>([])
+    const [indexes, setIndexes] = useState<IndexInterface[]>([]);
+    const [stocks, setStocks] = useState<StockInterface[]>([])
 
     const loader = useRef<HTMLDivElement>(null);
     const wigsContainer = useRef<HTMLDivElement>(null);
@@ -28,7 +29,7 @@ const Home = () => {
             setLoadProgress(prev => prev + 4)
             resolve(value)
         })
-        
+
     }
 
     const createIndexesPromiseArray = () => {
@@ -144,7 +145,7 @@ const Home = () => {
                 <Wigs indexes={indexes} />
             </div>
             <div ref={stocksContainer} className={styles.wig20Stocks}>
-                <Stocks stocks={stocks}/>
+                <Stocks stocks={stocks} />
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { TransactionType } from '../Utilities/Transaction';
+import { TransactionType } from '../Utilities/TypesAndInterfaces';
 
 type UserData = {
     _id: string,
@@ -22,9 +22,7 @@ const UserDataSlice = createSlice({
     name: `user`,
     initialState,
     reducers: {
-        setUser: (state, action: PayloadAction<{
-            _id: string, login: string, password: string, tips: string[], transactions: TransactionType[]
-        }>) => {
+        setUser: (state, action: PayloadAction<({ _id: string, login: string, password: string, tips: string[], transactions: TransactionType[] })>) => {
             state = action.payload;
         },
         setID: (state, action: PayloadAction<string>) => {
@@ -36,12 +34,13 @@ const UserDataSlice = createSlice({
         setPassword: (state, action: PayloadAction<string>) => {
             state.password = action.payload;
         },
-        setTips: (state, action: PayloadAction<[string]>) => {
+        setTips: (state, action: PayloadAction<string[]>) => {
             state.tips = action.payload;
         },
-        setTransaction: (state, action: PayloadAction<[TransactionType]>) => {
+        setTransaction: (state, action: PayloadAction<TransactionType[]>) => {
             state.transactions = action.payload;
-        }
+        },
+        getUser: (state) => state
     }
 })
 
@@ -52,6 +51,7 @@ export const {
     setPassword,
     setTips,
     setTransaction,
+    getUser,
 } = UserDataSlice.actions;
 
 export default UserDataSlice.reducer;

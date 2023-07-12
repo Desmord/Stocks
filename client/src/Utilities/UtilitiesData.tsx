@@ -28,21 +28,6 @@ export const WIG20_SHORCUTS = [
 ]
 
 
-export interface STOCK {
-    companyShortcut: string,
-    mainValue: string,
-    percentageChange: string,
-    valueChange: string,
-    error?: any,
-}
-export interface INDEX {
-    wigName: string,
-    mainValue: string,
-    percentageChange: string,
-    valueChange: string,
-    error?: any,
-}
-
 export const URL_ADRESSES = {
     HOME: `/`,
     LOGIN: `/login`,

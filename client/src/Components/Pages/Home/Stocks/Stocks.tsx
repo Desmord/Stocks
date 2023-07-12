@@ -1,8 +1,8 @@
-import { STOCK} from '../../../../Utilities/UtilitiesData';
+import { StockInterface } from '../../../../Utilities/TypesAndInterfaces';
 
 import styles from './Stocks.module.scss';
 
-const Stocks = ({ stocks }: { stocks: STOCK[] }) => {
+const Stocks = ({ stocks }: { stocks: StockInterface[] }) => {
 
     const isLoss = (value: string): boolean => !!value.match(/-/gim)
 
@@ -11,7 +11,7 @@ const Stocks = ({ stocks }: { stocks: STOCK[] }) => {
     return (
         <div className={styles.container}>
             <div className={styles.stocks}>WIG 20 STOCKS</div>
-            {stocks.map((stockIndex: STOCK, arrayIndex: number) => {
+            {stocks.map((stockIndex: StockInterface, arrayIndex: number) => {
 
                 if (stockIndex.error) {
                     return (
