@@ -35,6 +35,9 @@ export type CurrentOwnedStocksType = {
     name: string,
     notes: string,
     group: string[],
+    currentPrice?: number,
+    valueChange?: string,
+    percentageChange?: string,
 }
 
 export interface StockInterface {
