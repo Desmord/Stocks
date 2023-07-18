@@ -145,5 +145,9 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
             group: transactions.group,
         }
     })
-    
+
 }
+
+export const isLoss = (value: string): boolean => !!value.match(/-/gim)
+
+export const isProfit = (value: string): boolean => parseFloat(value.replace(`,`, `.`)) > 0 ? true : false;

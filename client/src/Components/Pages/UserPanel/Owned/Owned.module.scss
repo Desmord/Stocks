@@ -1,8 +1,15 @@
+@import '../../../../Styles/settings.scss';
+
 .container {
     position: absolute;
-    top:30px;
+    top: 30px;
     left: 240px;
-    width: 200px;
-    height: 200px;
-    background-color: hsl(220, 8%, 20%);
+    width: calc(100vw - 270px);
+    min-height: 500px;
+    display: flex;
+}
+
+
+.properties {
+    width: 100%;
 }

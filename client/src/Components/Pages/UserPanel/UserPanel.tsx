@@ -43,22 +43,22 @@ const UserPanel = () => {
     const [currentStocks, setCurrentStocks] = useState<CurrentOwnedStocksType[]>([])
 
     const getData = async () => {
-        const data = await getUserData();
+        // const data = await getUserData();
 
-        dispatch(setID(data[0]._id ? data[0]._id : ``))
-        dispatch(setLogin(data[0].login ? data[0].login : ``))
-        dispatch(setPassword(data[0].password ? data[0].password : ``))
-        dispatch(setTips(data[0].tips ? data[0].tips : []))
-        dispatch(setTransaction(data[0].transactions ? data[0].transactions : []))
+        // dispatch(setID(data[0]._id ? data[0]._id : ``))
+        // dispatch(setLogin(data[0].login ? data[0].login : ``))
+        // dispatch(setPassword(data[0].password ? data[0].password : ``))
+        // dispatch(setTips(data[0].tips ? data[0].tips : []))
+        // dispatch(setTransaction(data[0].transactions ? data[0].transactions : []))
 
 
         // trial ------------------------------------------------------------------------
         // ------------------------------------------------------------------------------
-        // dispatch(setID(`1`))
-        // dispatch(setLogin(`mikolaj`))
-        // dispatch(setPassword(`haslo`))
-        // dispatch(setTips([`tip 1`]))
-        // dispatch(setTransaction(TEST_TRANSACTIONS))
+        dispatch(setID(`1`))
+        dispatch(setLogin(`mikolaj`))
+        dispatch(setPassword(`haslo`))
+        dispatch(setTips([`tip 1`]))
+        dispatch(setTransaction(TEST_TRANSACTIONS))
         // end-trial --------------------------------------------------------------------
         // ------------------------------------------------------------------------------
 
@@ -157,7 +157,7 @@ const UserPanel = () => {
     return (
         <div className={styles.container}>
             <UserPanelMainMenu currentPage={currentPage} setCurrentPage={setCurrentPage} />
-            {currentPage === USER_PANEL_PAGES_CODE.OWNED ? <Owned /> : ``}
+            {currentPage === USER_PANEL_PAGES_CODE.OWNED ? <Owned items={currentStocks} /> : ``}
             {currentPage === USER_PANEL_PAGES_CODE.TRANSACTIONS ? <Transactions /> : ``}
         </div>
     )

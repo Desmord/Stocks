@@ -1,8 +1,17 @@
+import { CurrentOwnedStocksType } from '../../../../Utilities/TypesAndInterfaces';
+import { isLoss, isProfit } from '../../../../Utilities/UtilitieFunctions';
+
+import ItemList from './ItemsList/ItemList';
+
 import styles from './Owned.module.scss';
 
-const Owned = () => {
+
+const Owned = ({ items }: { items: CurrentOwnedStocksType[] }) => {
     return (
-        <div className={styles.container}>owned</div>
+        <div className={styles.container}>
+            <ItemList items={items} />
+
+        </div>
     )
 }
 
