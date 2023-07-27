@@ -25,8 +25,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "jest",
+    "eject": "react-scripts eject",
+    "compile": "tsc",
+    "testStart": " ts-node src/Test/WebData.test.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +47,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "type": "module"
 }
