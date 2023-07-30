@@ -7,6 +7,11 @@ const ItemList = ({ items }: { items: CurrentOwnedStocksType[] }) => {
     return (
         <div className={styles.itemList}>
             {items.map((item: CurrentOwnedStocksType, index: number) => {
+
+                const currentPrice = item.currentPrice ? parseFloat(item.currentPrice) : 1;
+                const currentTotalResult = parseFloat((item.quantity * currentPrice - item.totalPrice).toFixed(2));
+                const currentTotalPercentageChange = parseFloat((currentTotalResult / item.totalPrice * 100).toFixed(2));
+
                 return (
                     <div key={index} className={styles.item}>
                         <div className={styles.itemName}>{item.name}</div>
@@ -29,14 +34,14 @@ const ItemList = ({ items }: { items: CurrentOwnedStocksType[] }) => {
                         </div>
                         <div className={`
                                     ${styles.totalPercentageChange}
-                                    ${isLoss(`-1500`) ? styles.loss : ``}
-                                    ${isProfit(`-1500`) ? styles.profit : ``}
-                        `}>-1500 zł</div>
+                                    ${isLoss(`${currentTotalResult}`) ? styles.loss : ``}
+                                    ${isProfit(`${currentTotalResult}`) ? styles.profit : ``}
+                        `}>{currentTotalResult} zł</div>
                         <div className={`
                                     ${styles.totalChange}
-                                    ${isLoss(`-1500`) ? styles.loss : ``}
-                                    ${isProfit(`-1500`) ? styles.profit : ``}
-                        `}>-15%</div>
+                                    ${isLoss(`${currentTotalResult}`) ? styles.loss : ``}
+                                    ${isProfit(`${currentTotalResult}`) ? styles.profit : ``}
+                        `}>{currentTotalPercentageChange} %</div>
                     </div>
                 )
             })}

@@ -77,10 +77,13 @@ export const getUserData = async () => {
 const addToQuantity = (
     currentTransaction: TransactionType[],
     transactionIndex: number,
-    quantity: number
+    quantity: number,
+    totalPrice: number,
 ): TransactionType[] => {
     currentTransaction[transactionIndex].quantity =
         currentTransaction[transactionIndex].quantity + quantity
+    currentTransaction[transactionIndex].totalPrice =
+        parseFloat((currentTransaction[transactionIndex].totalPrice + totalPrice).toFixed(2))
 
     return currentTransaction
 }
@@ -90,10 +93,13 @@ const substractQuantity = (
     transactionIndex: number,
     quantity: number,
     shortcut: string,
+    totalPrice: number,
 ): TransactionType[] => {
     if (currentTransaction[transactionIndex].quantity > quantity) {
         currentTransaction[transactionIndex].quantity =
             currentTransaction[transactionIndex].quantity - quantity
+        currentTransaction[transactionIndex].totalPrice =
+            parseFloat((currentTransaction[transactionIndex].totalPrice - totalPrice).toFixed(2))
     } else {
         currentTransaction = currentTransaction.filter((transaction: TransactionType) => {
             return transaction.shortcut !== shortcut ? true : false
@@ -118,13 +124,19 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
         if (isStockAlreadyExits) {
 
             if (isAqusition) {
-                currentTransaction = addToQuantity(currentTransaction, transactionIndex, element.quantity)
+                currentTransaction = addToQuantity(
+                    currentTransaction,
+                    transactionIndex,
+                    element.quantity,
+                    element.totalPrice
+                )
             } else {
                 currentTransaction = substractQuantity(
                     currentTransaction,
                     transactionIndex,
                     element.quantity,
-                    element.shortcut
+                    element.shortcut,
+                    element.totalPrice
                 )
             }
 
@@ -138,6 +150,7 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
 
     return currentTransaction.map((transactions: TransactionType): CurrentOwnedStocksType => {
         return {
+            totalPrice: transactions.totalPrice,
             shortcut: transactions.shortcut,
             quantity: transactions.quantity,
             name: transactions.name,

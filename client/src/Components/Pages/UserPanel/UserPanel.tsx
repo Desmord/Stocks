@@ -113,7 +113,7 @@ const UserPanel = () => {
         newCurrentStock = newCurrentStock.map((current: CurrentOwnedStocksType) => {
             return {
                 ...current,
-                currentPrice: Math.floor(Math.random() * (1000 - 1 + 1) + 1),
+                currentPrice: Math.floor(Math.random() * (500 - 1 + 1) + 1),
                 valueChange: `${isPositive ? `` : `-`}${Math.floor(Math.random() * (400 - 1 + 1) + 1)}`,
                 percentageChange: `${isPositive ? `` : `-`}${Math.floor(Math.random() * (100 - 1 + 1) + 1)}`,
             }

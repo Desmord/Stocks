@@ -30,12 +30,13 @@ export type TransactionType = {
 }
 
 export type CurrentOwnedStocksType = {
+    totalPrice: number,
     shortcut: string,
     quantity: number,
     name: string,
     notes: string,
     group: string[],
-    currentPrice?: number,
+    currentPrice?: string,
     valueChange?: string,
     percentageChange?: string,
 }

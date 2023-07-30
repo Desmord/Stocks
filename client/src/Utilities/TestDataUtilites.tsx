@@ -620,34 +620,3 @@ export const TEST_TRANSACTIONS:   TransactionType[] = [
     },
 ]
 
-
-    // try catch
-    // const clickTest = async () => {
-
-    //     const response = await fetch(`http://localhost:8000/api/dataBase/editUser`, {
-    //         method: `POST`,
-    //         mode: "cors",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             id: `64a466aa67804a64c96bcfa0`,
-    //             login: `mikolaj`,
-    //             password: `haslo`,
-    //             tips: [
-    //                 "Kupować na początku kwietnia i sprzedawać po koniec sierpnia. Najważniejsze",
-    //                 "Kupować na początku stycznia i sprzedawać na konću. Ważne.",
-    //                 "Kupować na początku grudnia i sprzedawać na koncu stycznia. Mniej ważne.",
-    //                  "Nie moze byc strzsze zle ck ..."
-    //                  "czy ma diwidente dodatkowy plus"
-    //                  "Powyzej jakiejs kwoty jest niska prowizja"
-//                         "fundamenty wazniejsze niz techniczna ktora tylko do wsparcia"
-    //             ],
-    //             transactions: [  
-    //                  ...
-    //             ],
-    //         })
-    //     });
-
-    //     console.log(await response.json())
-    // }
