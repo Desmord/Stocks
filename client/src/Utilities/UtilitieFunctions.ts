@@ -79,12 +79,14 @@ const addToQuantity = (
     transactionIndex: number,
     quantity: number,
     totalPrice: number,
+    commision: number,
 ): TransactionType[] => {
     currentTransaction[transactionIndex].quantity =
         currentTransaction[transactionIndex].quantity + quantity
     currentTransaction[transactionIndex].totalPrice =
         parseFloat((currentTransaction[transactionIndex].totalPrice + totalPrice).toFixed(2))
-
+    currentTransaction[transactionIndex].commision =
+        parseFloat((currentTransaction[transactionIndex].commision + commision).toFixed(2))
     return currentTransaction
 }
 
@@ -94,12 +96,15 @@ const substractQuantity = (
     quantity: number,
     shortcut: string,
     totalPrice: number,
+    commision: number,
 ): TransactionType[] => {
     if (currentTransaction[transactionIndex].quantity > quantity) {
         currentTransaction[transactionIndex].quantity =
             currentTransaction[transactionIndex].quantity - quantity
         currentTransaction[transactionIndex].totalPrice =
             parseFloat((currentTransaction[transactionIndex].totalPrice - totalPrice).toFixed(2))
+        currentTransaction[transactionIndex].commision =
+            parseFloat((currentTransaction[transactionIndex].commision - commision).toFixed(2))
     } else {
         currentTransaction = currentTransaction.filter((transaction: TransactionType) => {
             return transaction.shortcut !== shortcut ? true : false
@@ -120,7 +125,6 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
         const isStockAlreadyExits = currentTransaction.some((currentTransaction: TransactionType) =>
             currentTransaction.shortcut === element.shortcut ? true : false)
 
-
         if (isStockAlreadyExits) {
 
             if (isAqusition) {
@@ -128,7 +132,8 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
                     currentTransaction,
                     transactionIndex,
                     element.quantity,
-                    element.totalPrice
+                    element.totalPrice,
+                    element.commision,
                 )
             } else {
                 currentTransaction = substractQuantity(
@@ -136,7 +141,8 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
                     transactionIndex,
                     element.quantity,
                     element.shortcut,
-                    element.totalPrice
+                    element.totalPrice,
+                    element.commision,
                 )
             }
 
@@ -150,12 +156,13 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
 
     return currentTransaction.map((transactions: TransactionType): CurrentOwnedStocksType => {
         return {
-            totalPrice: transactions.totalPrice,
+            totalProfit: transactions.totalPrice,
             shortcut: transactions.shortcut,
             quantity: transactions.quantity,
             name: transactions.name,
             notes: transactions.notes,
             group: transactions.group,
+            commision:transactions.commision
         }
     })
 
@@ -164,3 +171,11 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
 export const isLoss = (value: string): boolean => !!value.match(/-/gim)
 
 export const isProfit = (value: string): boolean => parseFloat(value.replace(`,`, `.`)) > 0 ? true : false;
+
+export const getCurrentTransactionsByName = (transactions: TransactionType[], name: string): TransactionType[] => {
+
+    if (name === ``) return []
+
+    return transactions.filter((transaction: TransactionType) => transaction.name === name ? true : false)
+
+}

@@ -40,7 +40,7 @@ const UserDataSlice = createSlice({
         setTransaction: (state, action: PayloadAction<TransactionType[]>) => {
             state.transactions = action.payload;
         },
-        getUser: (state) => state
+        getUser: (state) => state,
     }
 })
 

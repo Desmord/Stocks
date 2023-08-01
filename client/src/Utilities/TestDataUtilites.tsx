@@ -596,7 +596,73 @@ export const TEST_TRANSACTIONS:   TransactionType[] = [
         quantity: 31,
         price: 149.15,
         commision: 18.03,
-        totalPrice: 4641.68,
+        totalPrice: 4623.68,
+        commisionFreePrice:4623.65,
+        totalProfit: 0,             // if acuisition 0 ( and not divident? )
+        profit:0,                   // if acuisition 0 ( and not divident? )
+        totalLoss: 0 ,                // if acuisition 0   
+        loss: 0,                    // if acusition 0
+        totalPercentageChange:0,    // if acusition 0
+        percentageChange: 0,        // if acusition 0
+        date: "2023-05-07",
+        notes: "Probna notka do transakcji CD Projekt",
+        transactionReason: "Brak",
+        group: [
+            "Grupa test 2"
+        ],
+        divident: {
+            date: "0",
+            totalProfit: 0,
+            name: "",
+            profit: 0,
+            percentageProfit: 0
+        }
+    },
+    {
+        id: "12",
+        shortcut: "CDPROJEKT",
+        name: "CD Projekt SA",
+        type: "stock",
+        // type: "stock, feature, option, divident",
+        acqusition: true,
+        disposal: false,
+        quantity: 11,
+        price: 154.15,
+        commision: 18.03,
+        totalPrice: 1695.65,
+        commisionFreePrice:4623.65,
+        totalProfit: 0,             // if acuisition 0 ( and not divident? )
+        profit:0,                   // if acuisition 0 ( and not divident? )
+        totalLoss: 0 ,                // if acuisition 0   
+        loss: 0,                    // if acusition 0
+        totalPercentageChange:0,    // if acusition 0
+        percentageChange: 0,        // if acusition 0
+        date: "2023-05-07",
+        notes: "Probna notka do transakcji CD Projekt",
+        transactionReason: "Brak",
+        group: [
+            "Grupa test 2"
+        ],
+        divident: {
+            date: "0",
+            totalProfit: 0,
+            name: "",
+            profit: 0,
+            percentageProfit: 0
+        }
+    },
+    {
+        id: "13",
+        shortcut: "COMARCH",
+        name: "Cromach sa",
+        type: "stock",
+        // type: "stock, feature, option, divident",
+        acqusition: true,
+        disposal: false,
+        quantity: 11,
+        price: 200.15,
+        commision: 18.03,
+        totalPrice: 2200.68,
         commisionFreePrice:4623.65,
         totalProfit: 0,             // if acuisition 0 ( and not divident? )
         profit:0,                   // if acuisition 0 ( and not divident? )

@@ -3,17 +3,28 @@ import { isLoss, isProfit } from '../../../../../Utilities/UtilitieFunctions';
 
 import styles from './ItemList.module.scss';
 
-const ItemList = ({ items }: { items: CurrentOwnedStocksType[] }) => {
+const ItemList = ({
+    items,
+    currentSelectetItem,
+    setCurrentSelectemItem
+}: {
+    items: CurrentOwnedStocksType[],
+    currentSelectetItem: string,
+    setCurrentSelectemItem: Function
+}) => {
     return (
         <div className={styles.itemList}>
             {items.map((item: CurrentOwnedStocksType, index: number) => {
 
-                const currentPrice = item.currentPrice ? parseFloat(item.currentPrice) : 1;
-                const currentTotalResult = parseFloat((item.quantity * currentPrice - item.totalPrice).toFixed(2));
-                const currentTotalPercentageChange = parseFloat((currentTotalResult / item.totalPrice * 100).toFixed(2));
+                // const currentPrice = item.currentPrice ? parseFloat(item.currentPrice) : 1;
+                // const currentTotalResult = parseFloat((item.quantity * currentPrice - item.totalProfit).toFixed(2));
+                // const currentTotalPercentageChange = parseFloat((currentTotalResult / item.totalProfit * 100).toFixed(2));
 
                 return (
-                    <div key={index} className={styles.item}>
+                    <div
+                        key={index}
+                        className={`${styles.item} ${currentSelectetItem === item.name ? styles.selected : ``}`}
+                        onClick={() => setCurrentSelectemItem((prev: string) => item.name === prev ? `` : item.name)}>
                         <div className={styles.itemName}>{item.name}</div>
                         <div className={styles.currentPrice}>{item.currentPrice}</div>
                         <div
@@ -34,21 +45,18 @@ const ItemList = ({ items }: { items: CurrentOwnedStocksType[] }) => {
                         </div>
                         <div className={`
                                     ${styles.totalPercentageChange}
-                                    ${isLoss(`${currentTotalResult}`) ? styles.loss : ``}
-                                    ${isProfit(`${currentTotalResult}`) ? styles.profit : ``}
-                        `}>{currentTotalResult} zł</div>
+                                    ${isLoss(`${item.totalProfit}`) ? styles.loss : ``}
+                                    ${isProfit(`${item.totalProfit}`) ? styles.profit : ``}
+                        `}>{item.totalProfit.toFixed(2)} zł</div>
                         <div className={`
                                     ${styles.totalChange}
-                                    ${isLoss(`${currentTotalResult}`) ? styles.loss : ``}
-                                    ${isProfit(`${currentTotalResult}`) ? styles.profit : ``}
-                        `}>{currentTotalPercentageChange} %</div>
+                                    ${isLoss(`${item.totalProfit}`) ? styles.loss : ``}
+                                    ${isProfit(`${item.totalProfit}`) ? styles.profit : ``}
+                        `}>{item.totalPercentageProfit} %</div>
                     </div>
                 )
             })}
 
-            <div className={styles.properties}>
-
-            </div>
         </div>
     )
 }

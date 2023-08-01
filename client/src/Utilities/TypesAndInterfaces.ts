@@ -30,7 +30,6 @@ export type TransactionType = {
 }
 
 export type CurrentOwnedStocksType = {
-    totalPrice: number,
     shortcut: string,
     quantity: number,
     name: string,
@@ -39,6 +38,13 @@ export type CurrentOwnedStocksType = {
     currentPrice?: string,
     valueChange?: string,
     percentageChange?: string,
+    commision?: number,
+    totalProfit: number,
+    purchageCost?: number,
+    totalPercentageProfit?: number,
+    totalPerItemProfit?: number,
+    currentValidation?: number,
+
 }
 
 export interface StockInterface {
@@ -56,3 +62,13 @@ export interface IndexInterface {
     error?: any,
 }
 
+export interface DetailsData {
+    name: string,
+    commision: number,
+    price: number,
+    quantity: number,
+    totalPrice: number,
+    currentPrice: string,
+    currentPercentageChange: string,
+    currentChange: string,
+}

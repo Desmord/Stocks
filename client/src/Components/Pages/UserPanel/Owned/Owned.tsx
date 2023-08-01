@@ -1,16 +1,25 @@
 import { CurrentOwnedStocksType } from '../../../../Utilities/TypesAndInterfaces';
-import { isLoss, isProfit } from '../../../../Utilities/UtilitieFunctions';
+import { useState } from 'react'
 
 import ItemList from './ItemsList/ItemList';
+import ItemDetails from './ItemDetails/ItemDetails';
 
 import styles from './Owned.module.scss';
 
 
-const Owned = ({ items }: { items: CurrentOwnedStocksType[] }) => {
+const Owned = ({ currentStocks }: { currentStocks: CurrentOwnedStocksType[] }) => {
+    const [currentSelectetItem, setCurrentSelectemItem] = useState(``)
+
     return (
         <div className={styles.container}>
-            <ItemList items={items} />
-
+            <ItemList
+                items={currentStocks}
+                currentSelectetItem={currentSelectetItem}
+                setCurrentSelectemItem={setCurrentSelectemItem} />
+            <ItemDetails
+                currentSelectetItem={currentSelectetItem}
+                currentState={currentStocks}
+            />
         </div>
     )
 }
