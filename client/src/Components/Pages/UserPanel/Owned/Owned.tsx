@@ -16,10 +16,11 @@ const Owned = ({ currentStocks }: { currentStocks: CurrentOwnedStocksType[] }) =
                 items={currentStocks}
                 currentSelectetItem={currentSelectetItem}
                 setCurrentSelectemItem={setCurrentSelectemItem} />
-            <ItemDetails
+            {currentSelectetItem ? <ItemDetails
                 currentSelectetItem={currentSelectetItem}
                 currentState={currentStocks}
-            />
+            /> : ``}
+
         </div>
     )
 }

@@ -16,10 +16,6 @@ const ItemList = ({
         <div className={styles.itemList}>
             {items.map((item: CurrentOwnedStocksType, index: number) => {
 
-                // const currentPrice = item.currentPrice ? parseFloat(item.currentPrice) : 1;
-                // const currentTotalResult = parseFloat((item.quantity * currentPrice - item.totalProfit).toFixed(2));
-                // const currentTotalPercentageChange = parseFloat((currentTotalResult / item.totalProfit * 100).toFixed(2));
-
                 return (
                     <div
                         key={index}
