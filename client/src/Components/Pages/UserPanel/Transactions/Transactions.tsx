@@ -17,7 +17,10 @@ const Transactions = ({ userTransactions }: { userTransactions: TransactionType[
                 displayedTransactionId={displayedTransactionId}
                 setDisplaySransactionId={setDisplaySransactionId}
             />
-            <TransactionPanel />
+            <TransactionPanel
+                userTransactions={userTransactions}
+                displayedTransactionId={displayedTransactionId}
+            />
         </div>
     )
 }

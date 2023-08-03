@@ -1,5 +1,53 @@
-.container{
-    width: 100px;
-    height: 100px;
-    background-color: rgba(255,255,255,0.2);
+@import '../../../../../Styles/settings.scss';
+
+$container-width: 550px;
+$error-width: 350px;
+
+.container {
+    width: $container-width;
+    margin-left: 10px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: hsl(220, 8%, 18%);
+    color: $color-light-grey;
+
+    .error {
+        position: absolute;
+        width: $error-width;
+        height: 35px;
+        left: calc(50% - ($error-width / 2));
+        top: -50px;
+        display: grid;
+        place-content: center;
+        font-weight: 700;
+        font-size: calc($base-size * 1.2);
+    }
+
+    .menu {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+        gap: 2px;
+
+        div {
+            width: 100px;
+            height: 35px;
+            display: grid;
+            place-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+
+    .name {
+        font-weight: 700;
+        font-size: calc($base-size * 1.4);
+        padding: 20px 10px;
+    }
 }

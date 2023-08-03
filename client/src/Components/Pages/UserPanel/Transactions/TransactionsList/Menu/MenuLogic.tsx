@@ -56,19 +56,20 @@ const MenuLogic = ((userTransactions: TransactionType[]) => {
                 case TRANSACTION_TYPE_OPTIONS.BUY:
                     setTransactionAfterTypeFilter(
                         transactionAfterDateFilter
-                            .filter((transaction: TransactionType) => transaction.acqusition ? true : false))
+                            .filter((transaction: TransactionType) =>
+                                transaction.acqusition ? true : false))
                     break;
                 case TRANSACTION_TYPE_OPTIONS.SELL_LOSS:
                     setTransactionAfterTypeFilter(
                         transactionAfterDateFilter
                             .filter((transaction: TransactionType) =>
-                                !transaction.acqusition && transaction.profit < 0 ? true : false))
+                                !transaction.acqusition && transaction.loss > 0 ? true : false))
                     break;
                 default:
                     setTransactionAfterTypeFilter(
                         transactionAfterDateFilter
                             .filter((transaction: TransactionType) =>
-                                !transaction.acqusition && transaction.profit >= 0 ? true : false))
+                                !transaction.acqusition && transaction.profit > 0 ? true : false))
                     break;
             }
 
