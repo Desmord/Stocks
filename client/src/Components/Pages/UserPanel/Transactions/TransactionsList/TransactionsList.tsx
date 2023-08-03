@@ -2,10 +2,19 @@ import { TransactionType } from '../../../../../Utilities/TypesAndInterfaces';
 
 import MenuLogic from './Menu/MenuLogic';
 import Menu from './Menu/Menu';
+import List from './List/List';
 
 import styles from './TransactionsList.module.scss';
 
-const TransactionsList = ({ userTransactions }: { userTransactions: TransactionType[] }) => {
+const TransactionsList = ({
+    userTransactions,
+    displayedTransactionId,
+    setDisplaySransactionId,
+}: {
+    userTransactions: TransactionType[],
+    displayedTransactionId: string,
+    setDisplaySransactionId: Function
+}) => {
 
     const {
         dateFilterSelected, setDateFilterSelected,
@@ -24,7 +33,11 @@ const TransactionsList = ({ userTransactions }: { userTransactions: TransactionT
                 sortSelected={sortSelected}
                 transactionTypeFilterSelected={transactionTypeFilterSelected}
             />
-            {/* <div>transakcjie lista</div> */}
+            <List
+                transactions={transactionAfterSort}
+                displayedTransactionId={displayedTransactionId}
+                setDisplaySransactionId={setDisplaySransactionId}
+            />
         </div>
     )
 }

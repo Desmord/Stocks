@@ -30,10 +30,15 @@ $menu-category-width: 135px;
         height: $menu-button-height;
         display: grid;
         place-content: center;
+        background-color: hsl(220, 8%, 25%);
 
         &:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: hsl(220, 8%, 35%);
         }
+    }
+
+    div:nth-of-type(1){
+        background-color: hsla(0, 0%, 100%, 0.05);
     }
 }
 
@@ -53,7 +58,7 @@ $menu-category-width: 135px;
     }
 }
 
-.sort {
+.sort{
     margin-left: 1px;
 
     &:hover {
@@ -62,10 +67,10 @@ $menu-category-width: 135px;
     }
 }
 
-.reset {
+.reset{
     margin-left: 1px;
 
-    &:hover {
+    &:hover{
         cursor: pointer;
     }
 }

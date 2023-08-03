@@ -1,0 +1,78 @@
+@import '../../../../../../Styles/settings.scss';
+
+$transaction-width: 100%;
+$transaction-height: 80px;
+
+.container {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+
+.transaction {
+    width: $transaction-width;
+    height: $transaction-height;
+    background-color: hsl(220, 8%, 18%);
+    // margin-top: 2px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1.2fr 1fr;
+    place-items: center;
+    color: $color-light-grey;
+    transition: $transition;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    &:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .name {
+        font-weight: 700;
+        grid-column: span 2;
+    }
+
+    .date {
+        font-size: calc($base-size * 0.8);
+    }
+
+    .type {
+        font-size: calc($base-size * 0.8);
+
+        &Profit {
+            color: $color-green-main;
+            text-shadow: 0px 0px 2px $color-green-main;
+        }
+
+        &Loss {
+            color: $color-red-main;
+            text-shadow: 0px 0px 2px $color-red-main;
+        }
+    }
+
+    .price {
+        grid-row: 2/2;
+        font-size: calc($base-size * 0.7);
+    }
+
+    .totalPrice {
+        grid-row: 2/2;
+        font-size: calc($base-size * 0.7);
+    }
+
+    .sell {
+        grid-column: span 2;
+        grid-row: 2/2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+
+        div {
+            padding: 5px;
+        }
+    }
+}

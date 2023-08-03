@@ -9,7 +9,7 @@ import {
 } from '../Utilities';
 
 const MenuLogic = ((userTransactions: TransactionType[]) => {
-    const [dateFilterSelected, setDateFilterSelected] = useState(DATE_FILTER_OPTIONS.ALL)
+    const [dateFilterSelected, setDateFilterSelected] = useState(DATE_FILTER_OPTIONS.CURRENT_YEAR)
     const [transactionTypeFilterSelected, setTransactionTypeSelected] = useState(TRANSACTION_TYPE_OPTIONS.ALL)
     const [sortSelected, setSortSelected] = useState(SORT_OPTIONS.CLOSEST)
 
@@ -92,10 +92,6 @@ const MenuLogic = ((userTransactions: TransactionType[]) => {
         }
 
     }, [transactionAfterTypeFilter, sortSelected])
-
-    useEffect(() => {
-        console.log(transactionAfterSort)
-    }, [transactionAfterSort])
 
     return {
         dateFilterSelected, setDateFilterSelected,
