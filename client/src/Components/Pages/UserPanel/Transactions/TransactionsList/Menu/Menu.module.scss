@@ -1,0 +1,71 @@
+@import '../../../../../../Styles/settings.scss';
+
+$container-height: 45px;
+$menu-button-height: 35px;
+$menu-category-width: 135px;
+
+.menu {
+    width: 100%;
+    height: $container-height;
+    padding: 5px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    color: $color-light-grey;
+    font-weight: 700;
+    background-color: hsl(220, 8%, 18%);
+}
+
+.submenu {
+    position: relative;
+    width: $menu-category-width;
+    height: $menu-button-height;
+    background-color: hsla(0, 0%, 100%, 0.05);
+    z-index: 5;
+    overflow: hidden;
+    font-size: calc($base-size * 0.9);
+
+    div {
+        position: relative;
+        height: $menu-button-height;
+        display: grid;
+        place-content: center;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+}
+
+.dateFilterMenu {
+    &:hover {
+        height: calc($container-height + calc(3 * $menu-button-height));
+        cursor: pointer;
+    }
+}
+
+.typeFilterMenu {
+    margin-left: 1px;
+
+    &:hover {
+        height: calc($container-height + calc(4 * $menu-button-height));
+        cursor: pointer;
+    }
+}
+
+.sort {
+    margin-left: 1px;
+
+    &:hover {
+        height: calc($container-height + calc(2 * $menu-button-height));
+        cursor: pointer;
+    }
+}
+
+.reset {
+    margin-left: 1px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

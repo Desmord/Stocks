@@ -184,7 +184,7 @@ const UserPanel = () => {
         <div className={styles.container}>
             <UserPanelMainMenu currentPage={currentPage} setCurrentPage={setCurrentPage} />
             {currentPage === USER_PANEL_PAGES_CODE.OWNED ? <Owned currentStocks={currentStocks} /> : ``}
-            {currentPage === USER_PANEL_PAGES_CODE.TRANSACTIONS ? <Transactions /> : ``}
+            {currentPage === USER_PANEL_PAGES_CODE.TRANSACTIONS ? <Transactions userTransactions={userTransactions} /> : ``}
         </div>
     )
 

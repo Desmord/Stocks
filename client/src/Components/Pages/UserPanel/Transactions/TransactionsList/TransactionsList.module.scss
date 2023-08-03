@@ -1,4 +1,9 @@
-.container{
+@import '../../../../../Styles/settings.scss';
+
+
+.container {
     width: 550px;
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

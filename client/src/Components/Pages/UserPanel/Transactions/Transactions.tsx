@@ -1,12 +1,14 @@
+import { TransactionType } from '../../../../Utilities/TypesAndInterfaces';
+
 import TransactionsList from './TransactionsList/TransactionsList';
 import TransactionPanel from './TransactionPanel/TransactionPanel';
 
 import styles from './Transactions.module.scss';
 
-const Transactions = () => {
+const Transactions = ({ userTransactions }: { userTransactions: TransactionType[] }) => {
     return (
         <div className={styles.container}>
-            <TransactionsList />
+            <TransactionsList userTransactions={userTransactions}/>
             <TransactionPanel />
         </div>
     )
