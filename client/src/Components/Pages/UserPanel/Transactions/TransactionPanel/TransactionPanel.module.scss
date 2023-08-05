@@ -2,15 +2,18 @@
 
 $container-width: 550px;
 $error-width: 350px;
+$input-width: 350px;
 
 .container {
     width: $container-width;
     margin-left: 10px;
     height: fit-content;
+    padding-bottom: 40px;
     display: flex;
     flex-direction: column;
     background-color: hsl(220, 8%, 18%);
     color: $color-light-grey;
+
 
     .error {
         position: absolute;
@@ -29,7 +32,10 @@ $error-width: 350px;
         display: flex;
         justify-content: center;
         padding: 5px;
-        gap: 2px;
+        padding-bottom: 20px;
+        gap: 1px;
+        font-weight: 700;
+        font-size: calc($base-size * 0.9);
 
         div {
             width: 100px;
@@ -45,9 +51,72 @@ $error-width: 350px;
         }
     }
 
-    .name {
-        font-weight: 700;
-        font-size: calc($base-size * 1.4);
-        padding: 20px 10px;
+    .myInput {
+        width: $input-width;
+        height: 34px;
+        padding: 2px;
+        margin-left: 15px;
+        margin-top: 5px;
+        background-color: hsl(220, 8%, 18%);
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: $color-light-grey;
+
+        &:focus {
+            outline: none;
+            background-color: hsl(220, 8%, 23%);
+        }
+
     }
+
+    .myTextArea {
+        width: $input-width;
+        height: 90px;
+        padding: 2px;
+        margin-left: 15px;
+        margin-top: 5px;
+        background-color: hsl(220, 8%, 18%);
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: $color-light-grey;
+        resize: none;
+
+        &:focus {
+            outline: none;
+            background-color: hsl(220, 8%, 23%);
+        }
+    }
+
+    .accusition {
+        margin-top: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 100%;
+        display: flex;
+
+        div {
+            width: 100px;
+            height: 30px;
+            margin-left: 10px;
+            display: grid;
+            place-content: center;
+            background-color: hsl(220, 8%, 23%);
+
+            &:hover {
+                cursor: pointer;
+                background-color: hsl(220, 8%, 28%);
+            }
+        }
+
+        .active {
+            background-color: hsl(220, 8%, 28%)
+        }
+    }
+
+    .noAcqusition {
+        margin-top: -40px;
+        display: flex;
+        flex-direction: column;
+    }
+
 }

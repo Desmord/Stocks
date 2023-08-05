@@ -29,7 +29,7 @@ const Menu = ({
                 <div>{dateFilterSelected}</div>
                 <div onClick={() => setDateFilterSelected(DATE_FILTER_OPTIONS.ALL)}>Wszystkie</div>
                 <div onClick={() => setDateFilterSelected(DATE_FILTER_OPTIONS.CURRENT_YEAR)}>Bieżący rok</div>
-                <div onClick={() => setDateFilterSelected(DATE_FILTER_OPTIONS.DATE_RANGE)}>po Dacie</div>
+                <div onClick={() => setDateFilterSelected(DATE_FILTER_OPTIONS.DATE_RANGE)}>Po dacie</div>
             </div>
 
             {/* Type Filters */}
