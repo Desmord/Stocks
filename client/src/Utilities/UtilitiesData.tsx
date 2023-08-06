@@ -2,6 +2,7 @@ export const GET_STOCK_URL = "http://localhost:8000/api/webData/getCompanyStockV
 export const GET_WIG_URL = "http://localhost:8000/api/webData/getWigValue/";
 export const GET_LOGIN_URL = "http://localhost:8000/api/dataBase/login";
 export const GET_USER_URL = "http://localhost:8000/api/dataBase/getUser";
+export const EDIT_USER_URL = "http://localhost:8000/api/dataBase/editUser";
 
 export const INDEXES = [`wig`, `wig20`, `wig30`, `wig40`, `wig80`];
 export const WIG20_SHORCUTS = [

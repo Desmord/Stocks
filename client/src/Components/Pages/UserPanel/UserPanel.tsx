@@ -43,22 +43,22 @@ const UserPanel = () => {
     const [currentStocks, setCurrentStocks] = useState<CurrentOwnedStocksType[]>([])
 
     const getData = async () => {
-        // const data = await getUserData();
-
-        // dispatch(setID(data[0]._id ? data[0]._id : ``))
-        // dispatch(setLogin(data[0].login ? data[0].login : ``))
-        // dispatch(setPassword(data[0].password ? data[0].password : ``))
-        // dispatch(setTips(data[0].tips ? data[0].tips : []))
-        // dispatch(setTransaction(data[0].transactions ? data[0].transactions : []))
+        console.log(`Pobieramy dane ze DB`)
+        const data = await getUserData();
+        dispatch(setID(data[0]._id ? data[0]._id : ``))
+        dispatch(setLogin(data[0].login ? data[0].login : ``))
+        dispatch(setPassword(data[0].password ? data[0].password : ``))
+        dispatch(setTips(data[0].tips ? data[0].tips : []))
+        dispatch(setTransaction(data[0].transactions ? data[0].transactions : []))
 
 
         // trial ------------------------------------------------------------------------
         // ------------------------------------------------------------------------------
-        dispatch(setID(`1`))
-        dispatch(setLogin(`mikolaj`))
-        dispatch(setPassword(`haslo`))
-        dispatch(setTips([`tip 1`]))
-        dispatch(setTransaction(TEST_TRANSACTIONS))
+        // dispatch(setID(`1`))
+        // dispatch(setLogin(`mikolaj`))
+        // dispatch(setPassword(`haslo`))
+        // dispatch(setTips([`tip 1`]))
+        // dispatch(setTransaction(TEST_TRANSACTIONS))
         // end-trial --------------------------------------------------------------------
         // ------------------------------------------------------------------------------
 
@@ -89,14 +89,15 @@ const UserPanel = () => {
             index: number
         ) => {
 
+            const purchagePrice = currentStock[index].purchageCost as number;
             const currentPrice = stock.mainValue ? parseFloat(stock.mainValue.replace(`,`, `.`)) : 0;
             const valueChange = stock.valueChange ? stock.valueChange[0] : ``;
             const percentageChange = stock.valueChange ? stock.percentageChange[0] : ``;
-            const totalProfit = (currentStock[index].quantity * currentPrice) - currentStock[index].totalProfit
             const purchageCost = currentStock[index].totalProfit
-            const totalPercentageProfit = parseFloat((totalProfit / purchageCost * 100).toFixed(2));
-            const totalPerItemProfit = totalProfit / currentStock[index].quantity;
             const currentValidation = currentStock[index].quantity * currentPrice;
+            const totalPerItemProfit = parseFloat((parseFloat(stock.mainValue) - purchagePrice).toFixed(2));
+            const totalProfit = parseFloat(((currentStock[index].quantity * currentPrice) - currentStock[index].totalProfit).toFixed(2));
+            const totalPercentageProfit = (totalProfit / purchageCost * 100).toFixed(2);
 
             newCurrentStock[index] = {
                 ...newCurrentStock[index],
@@ -155,26 +156,19 @@ const UserPanel = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        // getCurrentStocksData(getCurrentStocksBasedOnTransactions(userTransactions));
+
+        getCurrentStocksData(getCurrentStocksBasedOnTransactions(userTransactions));
 
         // tutaj obliczac dane
 
 
         // trial ------------------------------------------------------------------------
         // ------------------------------------------------------------------------------
-        getTestCurrentData(getCurrentStocksBasedOnTransactions(userTransactions))
+        // getTestCurrentData(getCurrentStocksBasedOnTransactions(userTransactions))
         // end-trial --------------------------------------------------------------------
         // ------------------------------------------------------------------------------
     }, [userTransactions, dispatch])
 
-
-    // trial ------------------------------------------------------------------------
-    // ------------------------------------------------------------------------------
-    // useEffect(() => {
-    //     console.log(currentStocks)
-    // }, [currentStocks])
-    // end-trial --------------------------------------------------------------------
-    // ------------------------------------------------------------------------------
 
     useEffect(() => {
         if (!sessionStorage.getItem(`isLogged`)) navigate(URL_ADRESSES.HOME, { replace: true })

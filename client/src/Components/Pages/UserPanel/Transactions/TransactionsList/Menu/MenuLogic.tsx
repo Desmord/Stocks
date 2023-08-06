@@ -84,10 +84,40 @@ const MenuLogic = ((userTransactions: TransactionType[]) => {
 
             switch (sortSelected) {
                 case SORT_OPTIONS.CLOSEST:
-                    setTransactionAfterSort(JSON.parse(JSON.stringify(transactionAfterTypeFilter)).reverse())
+
+                    setTransactionAfterSort(JSON.parse(JSON.stringify(transactionAfterTypeFilter))
+                        .sort((transaction1: TransactionType, transaction2: TransactionType) => {
+                            const date1 = parseInt(transaction1.date.replaceAll(`-`, ``));
+                            const date2 = parseInt(transaction2.date.replaceAll(`-`, ``))
+
+                            if (date1 > date2) {
+                                return -1
+                            } else if (date1 < date2) {
+                                return 1
+                            } else {
+                                return 0
+                            }
+
+                        }))
+
                     break;
                 default:
-                    setTransactionAfterSort(transactionAfterTypeFilter)
+
+                    setTransactionAfterSort(JSON.parse(JSON.stringify(transactionAfterTypeFilter))
+                        .sort((transaction1: TransactionType, transaction2: TransactionType) => {
+                            const date1 = parseInt(transaction1.date.replaceAll(`-`, ``));
+                            const date2 = parseInt(transaction2.date.replaceAll(`-`, ``))
+
+                            if (date1 > date2) {
+                                return 1
+                            } else if (date1 < date2) {
+                                return -1
+                            } else {
+                                return 0
+                            }
+
+                        }))
+
                     break;
             }
         }

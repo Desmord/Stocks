@@ -44,7 +44,6 @@ export type CurrentOwnedStocksType = {
     totalPercentageProfit?: number,
     totalPerItemProfit?: number,
     currentValidation?: number,
-
 }
 
 export interface StockInterface {

@@ -3,6 +3,7 @@ import {
     GET_WIG_URL,
     GET_LOGIN_URL,
     GET_USER_URL,
+    EDIT_USER_URL,
 } from './UtilitiesData';
 import {
     StockInterface,
@@ -74,6 +75,20 @@ export const getUserData = async () => {
 
 }
 
+export const editUserData = async (objectToSave: any) => {
+    const response = await fetch(`${EDIT_USER_URL}`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(objectToSave)
+    })
+    const jsonData = await response.json();
+
+    return jsonData
+}
+
 const addToQuantity = (
     currentTransaction: TransactionType[],
     transactionIndex: number,
@@ -131,7 +146,7 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
                 currentTransaction = addToQuantity(
                     currentTransaction,
                     transactionIndex,
-                    element.quantity,
+                    parseInt(`${element.quantity}`),
                     element.totalPrice,
                     element.commision,
                 )
@@ -139,7 +154,7 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
                 currentTransaction = substractQuantity(
                     currentTransaction,
                     transactionIndex,
-                    element.quantity,
+                    parseInt(`${element.quantity}`),
                     element.shortcut,
                     element.totalPrice,
                     element.commision,
@@ -162,7 +177,8 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
             name: transactions.name,
             notes: transactions.notes,
             group: transactions.group,
-            commision:transactions.commision
+            commision: transactions.commision,
+            purchageCost:transactions.price
         }
     })
 

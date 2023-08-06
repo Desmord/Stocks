@@ -25,8 +25,8 @@ export const getFiltredTransactionsByDate = (startDate: string, endDate: string,
     const end = parseFloat(endDate.replaceAll(`-`, ``));
 
     return transactions.filter((transaction: TransactionType) => (
-        parseFloat(transaction.date.replaceAll(`-`, ``)) < end &&
-        parseFloat(transaction.date.replaceAll(`-`, ``)) > start
+        parseFloat(transaction.date.replaceAll(`-`, ``)) <= end &&
+        parseFloat(transaction.date.replaceAll(`-`, ``)) >= start
     ) ? true : false)
 
 }

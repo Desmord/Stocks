@@ -48,7 +48,7 @@ const logIn = async (req, res) => {
 
 const editUser = async (req, res) => {
     const {
-        id,
+        _id,
         login,
         password,
         tips,
@@ -57,7 +57,7 @@ const editUser = async (req, res) => {
 
     try {
 
-        await UserModel.updateOne({ _id: id }, {
+        await UserModel.updateOne({ _id: _id }, {
             $set: {
                 login,
                 password,
@@ -66,7 +66,8 @@ const editUser = async (req, res) => {
             }
         });
 
-        const dep = await UserModel.findById(id);
+        const dep = await UserModel.findById(_id);
+
         if (!dep) res.status(404).json({ message: 'Not found' });
         else res.status(200).json({ message: `Edit successful.` });
 
