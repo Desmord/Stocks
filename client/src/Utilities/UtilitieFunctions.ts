@@ -97,7 +97,7 @@ const addToQuantity = (
     commision: number,
 ): TransactionType[] => {
     currentTransaction[transactionIndex].quantity =
-        currentTransaction[transactionIndex].quantity + quantity
+        parseInt(`${currentTransaction[transactionIndex].quantity}`) + quantity
     currentTransaction[transactionIndex].totalPrice =
         parseFloat((currentTransaction[transactionIndex].totalPrice + totalPrice).toFixed(2))
     currentTransaction[transactionIndex].commision =
@@ -115,7 +115,7 @@ const substractQuantity = (
 ): TransactionType[] => {
     if (currentTransaction[transactionIndex].quantity > quantity) {
         currentTransaction[transactionIndex].quantity =
-            currentTransaction[transactionIndex].quantity - quantity
+            parseInt(`${currentTransaction[transactionIndex].quantity}`) - quantity
         currentTransaction[transactionIndex].totalPrice =
             parseFloat((currentTransaction[transactionIndex].totalPrice - totalPrice).toFixed(2))
         currentTransaction[transactionIndex].commision =
@@ -178,7 +178,7 @@ export const getCurrentStocksBasedOnTransactions = (transactions: TransactionTyp
             notes: transactions.notes,
             group: transactions.group,
             commision: transactions.commision,
-            purchageCost:transactions.price
+            purchageCost: transactions.price
         }
     })
 

@@ -99,6 +99,19 @@ const UserPanel = () => {
             const totalProfit = parseFloat(((currentStock[index].quantity * currentPrice) - currentStock[index].totalProfit).toFixed(2));
             const totalPercentageProfit = (totalProfit / purchageCost * 100).toFixed(2);
 
+
+            console.log(`Obecna ilosc`,currentStock[index].quantity)
+            console.log(totalPercentageProfit)
+            console.log(totalProfit)
+
+            // 141 sztuk, 21200k total cena
+
+
+// total percentage
+// total profit
+// wycena dzisiaj
+
+
             newCurrentStock[index] = {
                 ...newCurrentStock[index],
                 currentPrice,
@@ -113,6 +126,8 @@ const UserPanel = () => {
                 commision: currentStock[index].commision,
             }
         })
+
+        console.log(newCurrentStock)
 
         setCurrentStocks(newCurrentStock)
 
