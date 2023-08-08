@@ -41,7 +41,7 @@
         padding-top: 10px;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: 35px 35px 35px;
+        grid-template-rows: 35px 35px 35px 10px;
         gap: 10px;
         width: 100%;
 
@@ -82,7 +82,7 @@
             &:after {
                 position: absolute;
                 left: 0px;
-                bottom: -40px;
+                bottom: -60px;
                 content: "";
                 width: 350px;
                 height: 1px;

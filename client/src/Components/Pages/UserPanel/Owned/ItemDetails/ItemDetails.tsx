@@ -69,6 +69,7 @@ const ItemDetails = ({
                         </div>
 
                         <div className={styles.total}>
+                            <div className={styles.startTotalPrice}>Ilość posiadanych: :&nbsp;{stockData.quantity} szt.</div>
                             <div className={styles.commision}>Prowizja: &nbsp;{stockData.commision} zł</div>
                             <div className={styles.startTotalPrice}>Koszt zapuku:&nbsp;
                                 {stockData.purchageCost ? stockData.purchageCost : 0 * stockData.quantity} zł
