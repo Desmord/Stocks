@@ -1,0 +1,11 @@
+@import "../../../../Styles/settings.scss";
+
+.container {
+    position: absolute;
+    top: 30px;
+    left: 240px;
+    width: 1000px;
+    height: 500px;
+    display: flex;
+    background-color: hsl(220, 8%, 18%);
+}

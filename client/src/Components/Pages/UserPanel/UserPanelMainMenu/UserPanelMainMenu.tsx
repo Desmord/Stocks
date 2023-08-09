@@ -26,7 +26,15 @@ const UserPanelMainMenu = (
                     ${styles.button} 
                     ${currentPage === USER_PANEL_PAGES_CODE.TRANSACTIONS ? styles.buttonActive : ``}
                 `}>
-                Transakcije
+                Transakcje
+            </div>
+            <div
+                onClick={() => handleClick(USER_PANEL_PAGES_CODE.STATISTIC)}
+                className={`
+                    ${styles.button} 
+                    ${currentPage === USER_PANEL_PAGES_CODE.STATISTIC ? styles.buttonActive : ``}
+                `}>
+                Stastyki
             </div>
         </div>
     )

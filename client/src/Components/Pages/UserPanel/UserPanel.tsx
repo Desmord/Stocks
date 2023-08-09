@@ -11,8 +11,6 @@ import {
     getStockValues,
 } from '../../../Utilities/UtilitieFunctions';
 import {
-    setUser
-    , getUser,
     setID,
     setLogin,
     setPassword,
@@ -25,12 +23,7 @@ import { CurrentOwnedStocksType } from '../../../Utilities/TypesAndInterfaces';
 import UserPanelMainMenu from './UserPanelMainMenu/UserPanelMainMenu';
 import Owned from './Owned/Owned';
 import Transactions from './Transactions/Transactions';
-
-// trial ------------------------------------------------------------------------
-// ------------------------------------------------------------------------------
-import { TEST_TRANSACTIONS } from '../../../Utilities/TestDataUtilites';
-// end-trial --------------------------------------------------------------------
-// ------------------------------------------------------------------------------
+import Statistic from './Statistic/Statistic';
 
 import styles from './UserPanel.module.scss'
 
@@ -43,25 +36,14 @@ const UserPanel = () => {
     const [currentStocks, setCurrentStocks] = useState<CurrentOwnedStocksType[]>([])
 
     const getData = async () => {
-        console.log(`Pobieramy dane ze DB`)
+
         const data = await getUserData();
+
         dispatch(setID(data[0]._id ? data[0]._id : ``))
         dispatch(setLogin(data[0].login ? data[0].login : ``))
         dispatch(setPassword(data[0].password ? data[0].password : ``))
         dispatch(setTips(data[0].tips ? data[0].tips : []))
         dispatch(setTransaction(data[0].transactions ? data[0].transactions : []))
-
-
-        // trial ------------------------------------------------------------------------
-        // ------------------------------------------------------------------------------
-        // dispatch(setID(`1`))
-        // dispatch(setLogin(`mikolaj`))
-        // dispatch(setPassword(`haslo`))
-        // dispatch(setTips([`tip 1`]))
-        // dispatch(setTransaction(TEST_TRANSACTIONS))
-        // end-trial --------------------------------------------------------------------
-        // ------------------------------------------------------------------------------
-
 
     }
 
@@ -100,18 +82,6 @@ const UserPanel = () => {
             const totalPercentageProfit = (totalProfit / purchageCost * 100).toFixed(2);
 
 
-            console.log(`Obecna ilosc`,currentStock[index].quantity)
-            console.log(totalPercentageProfit)
-            console.log(totalProfit)
-
-            // 141 sztuk, 21200k total cena
-
-
-// total percentage
-// total profit
-// wycena dzisiaj
-
-
             newCurrentStock[index] = {
                 ...newCurrentStock[index],
                 currentPrice,
@@ -133,55 +103,12 @@ const UserPanel = () => {
 
     }
 
-
-    // trial ------------------------------------------------------------------------
-    // ------------------------------------------------------------------------------
-    const getTestCurrentData = (currentStock: CurrentOwnedStocksType[]) => {
-
-        let newCurrentStock = JSON.parse(JSON.stringify(currentStock))
-
-        const isPositive = Math.floor(Math.random() * (1000 - 1 + 1) + 1) % 2 === 0 ? true : false;
-
-        newCurrentStock = newCurrentStock.map((current: CurrentOwnedStocksType) => {
-            return {
-                ...current,
-                currentPrice: Math.floor(Math.random() * (500 - 1 + 1) + 1),
-                valueChange: `${isPositive ? `` : `-`}${Math.floor(Math.random() * (400 - 1 + 1) + 1)}`,
-                percentageChange: `${isPositive ? `` : `-`}${Math.floor(Math.random() * (100 - 1 + 1) + 1)}`,
-                totalProfit: 100,
-                purchageCost: 1000,
-                quantity: 50,
-                totalPercentageProfit: 10,
-                totalPerItemProfit: 15,
-                currentValidation: 1500,
-                commision: 15,
-            }
-        })
-
-        setCurrentStocks(newCurrentStock)
-
-    }
-    // end-trial --------------------------------------------------------------------
-    // ------------------------------------------------------------------------------
-
-
-
     useEffect(() => {
         getData()
     }, [dispatch]);
 
     useEffect(() => {
-
         getCurrentStocksData(getCurrentStocksBasedOnTransactions(userTransactions));
-
-        // tutaj obliczac dane
-
-
-        // trial ------------------------------------------------------------------------
-        // ------------------------------------------------------------------------------
-        // getTestCurrentData(getCurrentStocksBasedOnTransactions(userTransactions))
-        // end-trial --------------------------------------------------------------------
-        // ------------------------------------------------------------------------------
     }, [userTransactions, dispatch])
 
 
@@ -194,6 +121,7 @@ const UserPanel = () => {
             <UserPanelMainMenu currentPage={currentPage} setCurrentPage={setCurrentPage} />
             {currentPage === USER_PANEL_PAGES_CODE.OWNED ? <Owned currentStocks={currentStocks} /> : ``}
             {currentPage === USER_PANEL_PAGES_CODE.TRANSACTIONS ? <Transactions userTransactions={userTransactions} /> : ``}
+            {currentPage === USER_PANEL_PAGES_CODE.STATISTIC ? <Statistic userTransactions={userTransactions}/> : ``}
         </div>
     )
 

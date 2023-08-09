@@ -37,13 +37,7 @@ const Login = () => {
         }
 
         
-        // const isLogged = await logIn(login, password);
-        // trial ------------------------------------------------------------------------
-        // ------------------------------------------------------------------------------
-        const isLogged = true;
-        // end-trial --------------------------------------------------------------------
-        // ------------------------------------------------------------------------------
-
+        const isLogged = await logIn(login, password);
 
         if (isLogged) {
             sessionStorage.setItem(`isLogged`, `true`)

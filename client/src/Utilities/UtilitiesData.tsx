@@ -1,8 +1,8 @@
-export const GET_STOCK_URL = "http://localhost:8000/api/webData/getCompanyStockValue/";
-export const GET_WIG_URL = "http://localhost:8000/api/webData/getWigValue/";
-export const GET_LOGIN_URL = "http://localhost:8000/api/dataBase/login";
-export const GET_USER_URL = "http://localhost:8000/api/dataBase/getUser";
-export const EDIT_USER_URL = "http://localhost:8000/api/dataBase/editUser";
+export const GET_STOCK_URL = "/api/webData/getCompanyStockValue/";
+export const GET_WIG_URL = "/api/webData/getWigValue/";
+export const GET_LOGIN_URL = "/api/dataBase/login";
+export const GET_USER_URL = "/api/dataBase/getUser";
+export const EDIT_USER_URL = "/api/dataBase/editUser";
 
 export const INDEXES = [`wig`, `wig20`, `wig30`, `wig40`, `wig80`];
 export const WIG20_SHORCUTS = [
@@ -38,4 +38,5 @@ export const URL_ADRESSES = {
 export const USER_PANEL_PAGES_CODE = {
     OWNED: `owned`,
     TRANSACTIONS: `transactions`,
+    STATISTIC: `statistic`,
 }
