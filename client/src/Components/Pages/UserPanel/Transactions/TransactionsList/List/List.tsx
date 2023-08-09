@@ -34,12 +34,12 @@ const List = ({
                         {!transaction.acqusition ?
                             <div className={`${styles.sell} ${transaction.totalProfit ? styles.typeProfit : styles.typeLoss}`}>
                                 <div>{transaction.loss > 0 ?
-                                    `- ${transaction.totalPercentageChange}` :
+                                    `${transaction.totalPercentageChange}` :
                                     transaction.totalPercentageChange} %</div>
                                 <div>
                                     {transaction.totalProfit ?
                                         transaction.totalProfit :
-                                        `- ${transaction.totalLoss}`} zł
+                                        `${transaction.totalLoss}`} zł
                                 </div>
                             </div> : ``}
                     </div>
