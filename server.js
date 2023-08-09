@@ -1,6 +1,6 @@
 const express = require(`express`)
 const cors = require(`cors`)
-// const path = require('path');
+const path = require('path');
 const mongoose = require(`mongoose`)
 const webRoutes = require(`./Server_src/Routers/WebDataRoutes`);
 const dataBaseRoutes = require(`./Server_src/Routers/DataBaseRoutes`);
